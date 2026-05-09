@@ -1,0 +1,26 @@
+{
+  "name": "my-github-repo",
+  "version": "1.0.0",
+  "description": "A sample project demonstrating TypeScript usage with utility functions.",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/my-github-repo.git"
+  },
+  "keywords": [
+    "typescript",
+    "utilities",
+    "example"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  }
+}

@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+  COORDINATOR
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  phone        String?
+  password     String
+  role         Role     @default(USER)
+  college      String?
+  department   String?
+  year         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  managedEvents Event[]        @relation("EventCoordinator")
+  registrations Registration[]
+  teamsLed      Team[]         @relation("TeamLeader")
+  payments      Payment[]
+}
+
+model Event {
+  id                   String   @id @default(uuid())
+  name                 String
+  description          String
+  rules                String?
+  venue                String
+  date                 DateTime
+  time                 String
+  teamSizeLimit        Int      @default(1)
+  registrationFee      Float    @default(0)
+  prizeDetails         String?
+  lastRegistrationDate DateTime
+  bannerUrl            String?
+  isTeamEvent          Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  coordinatorId        String
+  coordinator          User     @relation("EventCoordinator", fields: [coordinatorId], references: [id])
+  
+  registrations        Registration[]
+  teams                Team[]
+  payments             Payment[]
+}
+
+model Team {
+  id        String   @id @default(uuid())
+  name      String
+  leaderId  String
+  eventId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leader    User     @relation("TeamLeader", fields: [leaderId], references: [id])
+  event     Event    @relation(fields: [eventId], references: [id])
+
+  registrations Registration[]
+}
+
+model Registration {
+  id            String   @id @default(uuid())
+  userId        String
+  eventId       String
+  teamId        String?
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentId     String?
+  isAttended    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          User     @relation(fields: [userId], references: [id])
+  event         Event    @relation(fields: [eventId], references: [id])
+  team          Team?    @relation(fields: [teamId], references: [id])
+  payment       Payment? @relation(fields: [paymentId], references: [id])
+
+  @@unique([userId, eventId])
+}
+
+model Payment {
+  id                String   @id @default(uuid())
+  razorpayOrderId   String   @unique
+  razorpayPaymentId String?  @unique
+  razorpaySignature String?
+  amount            Float
+  status            PaymentStatus @default(PENDING)
+  userId            String
+  eventId           String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user              User     @relation(fields: [userId], references: [id])
+  event             Event    @relation(fields: [eventId], references: [id])
+  registrations     Registration[]
+}

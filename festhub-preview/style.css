@@ -19,7 +19,7 @@
 }
 
 body {
-    font-family: var(--font-inter), sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
     overflow-x: hidden;
@@ -27,7 +27,7 @@ body {
 }
 
 h1, h2, h3, h4, .logo {
-    font-family: var(--font-outfit), sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 
 /* Background Effects */
@@ -114,8 +114,6 @@ h1, h2, h3, h4, .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    text-decoration: none;
-    color: var(--text-primary);
 }
 
 .logo i {
@@ -163,7 +161,7 @@ h1, h2, h3, h4, .logo {
 .btn {
     padding: 0.6rem 1.5rem;
     border-radius: 8px;
-    font-family: var(--font-inter), sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
@@ -171,9 +169,7 @@ h1, h2, h3, h4, .logo {
     border: none;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 0.5rem;
-    text-decoration: none;
 }
 
 .btn-primary {
@@ -185,7 +181,6 @@ h1, h2, h3, h4, .logo {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-    color: white;
 }
 
 .btn-outline {
@@ -197,7 +192,6 @@ h1, h2, h3, h4, .logo {
 .btn-outline:hover {
     background: var(--surface-color);
     border-color: var(--text-secondary);
-    color: var(--text-primary);
 }
 
 .btn-glass {
@@ -499,60 +493,6 @@ h1, h2, h3, h4, .logo {
 
 .feature-card p {
     color: var(--text-secondary);
-}
-
-/* Additional Layout Styles */
-.page-container {
-    padding-top: 100px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.page-content {
-    flex: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    width: 100%;
-}
-
-.form-container {
-    max-width: 450px;
-    margin: 0 auto;
-    background: var(--surface-color);
-    border: 1px solid var(--surface-border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.form-control {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--surface-border);
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-family: var(--font-inter), sans-serif;
-    transition: all 0.3s ease;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 /* Responsive */
